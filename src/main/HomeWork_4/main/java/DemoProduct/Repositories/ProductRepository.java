@@ -11,14 +11,23 @@ import java.util.List;
 @Repository
 public class ProductRepository {
 
-    @Autowired
-    private Products products;
+    /*
+    3. * Вшить ProductDao в веб-проект, и показывать товары, лежащие в базе данных.
+     */
 
-    public List<Product> getProducts () {
-        return products.getProducts();
+    @Autowired
+    private ProductDao productDao;
+
+    public List<Product> findAll () {
+        return productDao.findAll();
     }
 
-    public void addProduct(Product product){
-        products.add(product);
-    };
+    public void save (Product product) {
+        productDao.saveOrUpdate(product);
+    }
+
+    public Product findById (Long id) {
+        return productDao.findById(id);
+    }
+
 }

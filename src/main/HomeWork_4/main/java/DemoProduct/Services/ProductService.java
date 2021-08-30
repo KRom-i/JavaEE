@@ -18,17 +18,15 @@ public class ProductService {
     }
 
     public void addProduct(Product product){
-
-        product.setId(repository.getProducts().size() + 1);
-
         repository.addProduct(product);
     }
 
-    public Product getProductById (int id) {
-
-        if (id <= 0 || id > repository.getProducts().size()) return null;
-
-        return repository.getProducts().get(id - 1);
+    public Product getProductById (Long id) {
+        try {
+            return repository.findById(id);
+        } catch (NoSuchElementException e){
+            return null;
+        }
     }
 
     public Product getProduct () {

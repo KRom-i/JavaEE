@@ -31,7 +31,7 @@ public class ProductController {
 
 //    Поиск продукта по ID
     @RequestMapping(path = "/showProductById/{sid}", method = RequestMethod.GET)
-    public String showStudentById(Model uiModel, @PathVariable("sid") int id) {
+    public String showStudentById(Model uiModel, @PathVariable("sid") Long id) {
 
         Product product = service.getProductById(id);
 
