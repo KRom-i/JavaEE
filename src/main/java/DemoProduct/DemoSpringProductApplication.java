@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class DemoSpringProductApplication {
+public class   DemoSpringProductApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringProductApplication.class, args);

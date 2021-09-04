@@ -1,7 +1,6 @@
 package DemoProduct.Controllers;
 
 
-import DemoProduct.Products.Product;
 import DemoProduct.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/product")
@@ -18,20 +16,9 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-
-//    Список всех продуктов
-    @RequestMapping("/showProducts")
-    public String showProducts(Model uiModel){
-
-        uiModel.addAttribute("products", service.getProducts());
-
-        return "products";
-    }
-
-
 //    Поиск продукта по ID
-    @RequestMapping(path = "/showProductById/{sid}", method = RequestMethod.GET)
-    public String showStudentById(Model uiModel, @PathVariable("sid") Long id) {
+    @RequestMapping(path = "/showProductById/{id}", method = RequestMethod.GET)
+    public String showStudentById(Model uiModel, @PathVariable("id") Long id) {
 
         Product product = service.getProductById(id);
 
@@ -68,10 +55,20 @@ public class ProductController {
         return "product-index";
     }
 
-    //    Добавлении нового продукта
-    @RequestMapping("/test")
-    public String test(Model uiModel) {
-        return "product-index";
+
+    /*
+    Задание 2.
+    Сделать страницу, в которую будут выведены эти записи.
+      */
+
+    @RequestMapping("/showProducts")
+    public String showProducts(Model uiModel){
+
+        uiModel.addAttribute("products", service.getProducts());
+
+        return "products";
     }
+
+
 
 }
