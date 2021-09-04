@@ -55,8 +55,9 @@ public class ProductController {
         return "product-index";
     }
 
+    
 
-    /*
+  /*
     Задание 2.
     Сделать страницу, в которую будут выведены эти записи.
       */
@@ -66,6 +67,40 @@ public class ProductController {
 
         uiModel.addAttribute("products", service.getProducts());
 
+        return "products";
+    }
+
+    /*
+    Задание 3.
+    С помощью GET-запроса указывать фильтрацию по:
+    a. только минимальной,
+    b. только максимальной,
+    c. или минимальной и максимальной цене.
+        */
+
+    @RequestMapping(path = "/sortDesc/{property}", method = RequestMethod.GET)
+    public String getSortDesc(Model uiModel, @PathVariable("property") String property) {
+
+        uiModel.addAttribute("products", service.getSortDesc(property));
+        return "products";
+    }
+
+    @RequestMapping(path = "/sortAsc/{property}", method = RequestMethod.GET)
+    public String getSortAsc(Model uiModel, @PathVariable("property") String property) {
+
+        uiModel.addAttribute("products", service.getSortAsc(property));
+        return "products";
+    }
+
+     /*
+    Задание 4.
+    Добавить постраничное отображение (по 5 записей на странице)
+      */
+
+    @RequestMapping(path = "/showPage/{page}/{size}", method = RequestMethod.GET)
+    public String getPage(Model uiModel, @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+
+        uiModel.addAttribute("products", service.getPage(page, size));
         return "products";
     }
 

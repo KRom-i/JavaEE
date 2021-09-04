@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @Service
@@ -41,7 +42,22 @@ public class ProductService {
         return new Product();
     }
 
+    public Iterator<Product> getPage(Integer page, Integer size){
+        this.page = page; this.size = size;
+        return repository.findAll(PageRequest.of(page, size)).iterator();
+    }
 
+    public Iterator<Product> getSortDesc(String property){
+        return getSort(Sort.Direction.DESC, property);
+    }
+
+    public Iterator<Product> getSortAsc (String property) {
+        return getSort(Sort.Direction.ASC, property);
+    }
+
+    private Iterator<Product> getSort(Sort.Direction direction, String property){
+        return repository.findAll(PageRequest.of(page, size, Sort.by(direction, property))).iterator();
+    }
 
 }
 
