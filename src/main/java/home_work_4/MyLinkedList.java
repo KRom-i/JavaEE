@@ -196,4 +196,20 @@ public class MyLinkedList<T> implements Iterable<T> {
         sb.append("]");
         return sb.toString();
     }
+
+    public int indexOf(T item){
+        if (isEmpty()) {
+            throw new RuntimeException("List is empty");
+        }
+        Node current = first;
+        for (int i = 0; i < size; i++) {
+            if (current.getValue () == item){
+                return i;
+            }
+            current = current.getNext();
+        }
+
+        return -1;
+    }
+
 }
