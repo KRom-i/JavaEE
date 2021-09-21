@@ -174,6 +174,25 @@ public class MyLinkedList<T> implements Iterable<T> {
         return true;
     }
 
+    public T indexOf(int index){
+        if (index < 0 || index > size - 1) {
+            throw new IllegalArgumentException("index: " + index);
+        }
+
+        if (index == 0) {
+            return getFirst ();
+        }
+        if (index == size - 1) {
+            return getLast ();
+        }
+
+        Node current = first;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.getNext();
+        }
+        return current.getValue ();
+    }
+
     public boolean isEmpty() {
         return first == null;
     }
