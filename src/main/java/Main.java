@@ -26,7 +26,7 @@ public class Main {
 
         System.out.println ("NUMBER_TREES=" + NUMBER_TREES);
         System.out.println ("balance=" + balance);
-        System.out.println ("balance=" + ((balance / NUMBER_TREES) * 100) + "%");
+        System.out.println ("balance=" + (double) ((balance / NUMBER_TREES) * 100) + "%");
 
     }
 }
