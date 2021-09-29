@@ -1,5 +1,7 @@
 import java.util.NoSuchElementException;
 
+import static java.util.Objects.isNull;
+
 public class MyTreeMap<K extends Comparable<K>, V> {
     private Node root;
 
@@ -156,6 +158,41 @@ public class MyTreeMap<K extends Comparable<K>, V> {
         return toString(node.left) + " " +
                 node.key + "=" + node.value + " " +
                 toString(node.right);
+    }
+
+
+    public int height(){
+        return height (root);
+    }
+
+    private int height(Node node){
+        if (isNull(node) || isNull(node.left) && isNull (node.right)){
+            return 0;
+
+        } else if (isNull(node.left) ){
+            return height (node.right) + 1;
+
+        } else if (isNull (node.right)) {
+            return height(node.left) + 1;
+
+        } else {
+            return Math.max (height(node.left), height (node.right)) + 1;
+        }
+    }
+
+    public boolean isBalance(){
+        return isBalance (root);
+    }
+
+    private boolean isBalance (Node node) {
+        if (isNull (node) || isNull (node.left) && isNull (node.right)){
+            return true;
+
+        } else {
+            return Math.abs (height (node.left) - height (node.right)) <= 1
+                    && isBalance (node.left) && isBalance (node.right);
+
+        }
     }
 
 }
