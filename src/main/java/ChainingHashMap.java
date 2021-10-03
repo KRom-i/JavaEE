@@ -3,7 +3,6 @@ import java.util.LinkedList;
 public class ChainingHashMap<K, V> {
     private int capacity;
     private int size;
-    private final int DEFAULT_CAPACITY = 16;
 
     private LinkedList<Node>[] st;
 
@@ -16,11 +15,7 @@ public class ChainingHashMap<K, V> {
     }
 
     public ChainingHashMap () {
-        capacity = DEFAULT_CAPACITY;
-        st = new LinkedList[DEFAULT_CAPACITY];
-        for (int i = 0; i < st.length; i++) {
-            st[i] = new LinkedList<>();
-        }
+        this (16);
     }
 
     private class Node {
@@ -89,5 +84,17 @@ public class ChainingHashMap<K, V> {
             sb.append(System.lineSeparator());
         }
         return sb.toString();
+    }
+
+    public boolean remove(K key){
+        checkKeyNotNull(key);
+        int i = hash(key);
+        for (int j = 0; j < st[i].size (); j++) {
+            if (st[i].get (j).key.equals(key)) {
+                st[i].remove ();
+                return true;
+            }
+        }
+        return false;
     }
 }
