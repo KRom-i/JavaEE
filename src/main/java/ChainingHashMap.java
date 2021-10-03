@@ -91,7 +91,7 @@ public class ChainingHashMap<K, V> {
         int i = hash(key);
         for (int j = 0; j < st[i].size (); j++) {
             if (st[i].get (j).key.equals(key)) {
-                st[i].remove ();
+                st[i].remove (j);
                 return true;
             }
         }
